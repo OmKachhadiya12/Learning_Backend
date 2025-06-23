@@ -8,7 +8,7 @@ const menuItem = require("./models/menuItem");
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("Heyyy");
+  res.send("Heyyy Man!!!");
 });
 
 const personRoute = require('./routes/personRoute');
