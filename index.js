@@ -4,6 +4,7 @@ const db = require("./db");
 const Person = require("./models/Person");
 const bodyParser = require("body-parser");
 const menuItem = require("./models/menuItem");
+require('dotenv').config();
 
 app.use(bodyParser.json());
 
@@ -16,7 +17,8 @@ const menuRoute = require('./routes/menuRoute');
 app.use('/',personRoute);
 app.use('/',menuRoute);
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Working Man!!!");
 });
