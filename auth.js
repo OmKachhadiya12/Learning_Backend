@@ -4,13 +4,13 @@ const Person = require('./models/Person');
 
 passport.use(new LocalStrategy(async(username,password,done) => {
   try{
-    console.log('Recevied data', username,password);
+    // console.log('Recevied data', username,password);
     const user = await Person.findOne({username:username});
     if(!user){
       return done(null,false,{message:'Not found!!!'});
     }
 
-    const isPasswordMatch = user.password === password ? true : false;
+    const isPasswordMatch = await user.comparePassword(password);
     if(isPasswordMatch){
       return done(null,user);
     }else{
@@ -18,7 +18,7 @@ passport.use(new LocalStrategy(async(username,password,done) => {
     }
 
   }catch(error){
-    return done(err);
+    return done(error);
   }
 }))
 
