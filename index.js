@@ -8,6 +8,13 @@ require('dotenv').config();
 
 app.use(bodyParser.json());
 
+const logTime = (req,res,next) => {
+  console.log(`${new Date().toLocaleString()}`);
+  next();
+}
+
+app.use(logTime);
+
 app.get("/", (req, res) => {
   res.send("Heyyy Man!!!");
 });
